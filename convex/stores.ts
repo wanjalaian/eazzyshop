@@ -65,17 +65,34 @@ export const create = mutation({
     const userId = await auth.getUserId(ctx);
     if (!userId) throw new Error("Unauthorized");
 
+    // 1. If merchant already owns a store, update it
+    const ownerStore = await ctx.db
+      .query("stores")
+      .withIndex("by_owner", (q) => q.eq("ownerId", userId))
+      .first();
+
+    if (ownerStore) {
+      await ctx.db.patch(ownerStore._id, {
+        ...args,
+        isLive: args.isLive ?? true,
+      });
+      return ownerStore._id;
+    }
+
+    // 2. Auto-resolve slug collision if taken by another user
+    let finalSlug = args.slug;
     const existing = await ctx.db
       .query("stores")
-      .withIndex("by_slug", (q) => q.eq("slug", args.slug))
+      .withIndex("by_slug", (q) => q.eq("slug", finalSlug))
       .first();
 
     if (existing) {
-      throw new Error("Store link/subdomain is already taken.");
+      finalSlug = `${args.slug}-${Math.floor(1000 + Math.random() * 9000)}`;
     }
 
     const storeId = await ctx.db.insert("stores", {
       ...args,
+      slug: finalSlug,
       ownerId: userId,
       isLive: args.isLive ?? true,
       orderCounter: 1000,
