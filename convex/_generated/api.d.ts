@@ -12,6 +12,7 @@ import type * as auth from "../auth.js";
 import type * as categories from "../categories.js";
 import type * as customers from "../customers.js";
 import type * as discounts from "../discounts.js";
+import type * as http from "../http.js";
 import type * as orders from "../orders.js";
 import type * as products from "../products.js";
 import type * as stores from "../stores.js";
@@ -28,6 +29,7 @@ declare const fullApi: ApiFromModules<{
   categories: typeof categories;
   customers: typeof customers;
   discounts: typeof discounts;
+  http: typeof http;
   orders: typeof orders;
   products: typeof products;
   stores: typeof stores;

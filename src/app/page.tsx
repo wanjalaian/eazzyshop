@@ -11,7 +11,7 @@ export default function HomePage() {
             <div className="w-9 h-9 rounded-xl bg-[#1A1A19] flex items-center justify-center text-white">
               <Store size={18} />
             </div>
-            <span className="font-serif text-2xl font-bold tracking-tight">EazzyShop</span>
+            <span className="font-heading text-2xl font-bold tracking-tight">EazzyShop</span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -37,7 +37,7 @@ export default function HomePage() {
           <Zap size={14} /> Built for WhatsApp Merchants
         </div>
 
-        <h1 className="font-serif text-4xl sm:text-6xl font-bold tracking-tight leading-[1.1] text-[#1A1A19] mb-6">
+        <h1 className="font-heading text-4xl sm:text-6xl font-bold tracking-tight leading-[1.1] text-[#1A1A19] mb-6">
           Shopify simplicity, <br />
           <span className="text-[#C4653A]">WhatsApp direct delivery.</span>
         </h1>
@@ -70,7 +70,7 @@ export default function HomePage() {
             <div className="w-12 h-12 rounded-xl bg-[#F3E8E2] text-[#C4653A] flex items-center justify-center">
               <Smartphone size={24} />
             </div>
-            <h3 className="font-serif text-xl font-bold text-[#1A1A19]">Mobile-First Catalog</h3>
+            <h3 className="font-heading text-xl font-bold text-[#1A1A19]">Mobile-First Catalog</h3>
             <p className="text-[#6B6560] text-sm leading-relaxed">
               Curated magazine-style product grids with variant matrix (sizes, colors, capacity) optimized for African mobile connections.
             </p>
@@ -80,7 +80,7 @@ export default function HomePage() {
             <div className="w-12 h-12 rounded-xl bg-[#F3E8E2] text-[#C4653A] flex items-center justify-center">
               <MessageSquare size={24} />
             </div>
-            <h3 className="font-serif text-xl font-bold text-[#1A1A19]">Instant WhatsApp Orders</h3>
+            <h3 className="font-heading text-xl font-bold text-[#1A1A19]">Instant WhatsApp Orders</h3>
             <p className="text-[#6B6560] text-sm leading-relaxed">
               Buyers build their cart, choose delivery zone, and send a beautifully formatted order directly to your WhatsApp Business number.
             </p>
@@ -90,7 +90,7 @@ export default function HomePage() {
             <div className="w-12 h-12 rounded-xl bg-[#F3E8E2] text-[#C4653A] flex items-center justify-center">
               <Store size={24} />
             </div>
-            <h3 className="font-serif text-xl font-bold text-[#1A1A19]">CRM & Manual Sales</h3>
+            <h3 className="font-heading text-xl font-bold text-[#1A1A19]">CRM & Manual Sales</h3>
             <p className="text-[#6B6560] text-sm leading-relaxed">
               Log sales from chat, manage repeat customers, track top buyers, and handle multi-currency pricing (KES, UGX, TZS, USD, EUR).
             </p>
@@ -101,7 +101,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t border-[#E8E2DC] py-12 px-4 text-center text-sm text-[#6B6560]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2 font-serif font-bold text-[#1A1A19]">
+          <div className="flex items-center gap-2 font-heading font-bold text-[#1A1A19]">
             <Store size={16} /> EazzyShop
           </div>
           <p>© {new Date().getFullYear()} EazzyShop. Multi-Tenant WhatsApp Commerce Platform.</p>

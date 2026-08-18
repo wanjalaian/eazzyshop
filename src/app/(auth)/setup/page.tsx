@@ -76,7 +76,7 @@ export default function SetupWizardPage() {
           <div className="w-12 h-12 rounded-2xl bg-[#1A1A19] flex items-center justify-center text-white mx-auto mb-3">
             <Store size={24} />
           </div>
-          <h2 className="font-serif text-3xl font-bold text-[#1A1A19]">Set up your store profile</h2>
+          <h2 className="font-heading text-3xl font-bold text-[#1A1A19]">Set up your store profile</h2>
           <p className="text-sm text-[#6B6560] mt-1">Step {step} of 2 — Configure branding & checkout</p>
         </div>
 

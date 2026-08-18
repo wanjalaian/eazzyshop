@@ -98,7 +98,7 @@ export default function CartPage({
   if (storeItems.length === 0) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-16 text-center">
-        <h1 className="font-serif text-3xl font-semibold text-[#1A1A19] mb-4">Your bag is empty</h1>
+        <h1 className="font-heading text-3xl font-semibold text-[#1A1A19] mb-4">Your bag is empty</h1>
         <p className="text-[#6B6560] mb-8">Looks like you haven't added anything yet.</p>
         <a 
           href={`/store/${slug}`}
@@ -114,7 +114,7 @@ export default function CartPage({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex flex-col lg:flex-row gap-12">
       {/* Cart Items */}
       <div className="w-full lg:w-[60%] flex flex-col gap-6">
-        <h1 className="font-serif text-3xl font-semibold text-[#1A1A19]">Your Bag</h1>
+        <h1 className="font-heading text-3xl font-semibold text-[#1A1A19]">Your Bag</h1>
         
         <div className="flex flex-col gap-6 mt-4">
           {storeItems.map((item) => (
@@ -167,7 +167,7 @@ export default function CartPage({
       {/* Checkout Sidebar */}
       <div className="w-full lg:w-[40%] flex flex-col gap-6">
         <div className="bg-white p-6 rounded-[12px] shadow-sm border border-[#E8E2DC] flex flex-col gap-6">
-          <h2 className="font-serif text-2xl font-semibold text-[#1A1A19]">Order Summary</h2>
+          <h2 className="font-heading text-2xl font-semibold text-[#1A1A19]">Order Summary</h2>
           
           <div className="flex flex-col gap-4 text-[#1A1A19]">
             <div className="flex justify-between">

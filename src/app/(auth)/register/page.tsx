@@ -37,9 +37,9 @@ export default function RegisterPage() {
           <div className="w-10 h-10 rounded-xl bg-[#1A1A19] flex items-center justify-center text-white">
             <Store size={20} />
           </div>
-          <span className="font-serif text-2xl font-bold text-[#1A1A19]">EazzyShop</span>
+          <span className="font-heading text-2xl font-bold text-[#1A1A19]">EazzyShop</span>
         </Link>
-        <h2 className="font-serif text-3xl font-bold text-[#1A1A19]">Start your WhatsApp storefront</h2>
+        <h2 className="font-heading text-3xl font-bold text-[#1A1A19]">Start your WhatsApp storefront</h2>
         <p className="mt-2 text-sm text-[#6B6560]">
           Already registered?{" "}
           <Link href="/login" className="font-medium text-[#C4653A] hover:underline">

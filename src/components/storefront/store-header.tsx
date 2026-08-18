@@ -31,7 +31,7 @@ export function StoreHeader({ store, slug }: { store: any, slug: string }) {
             {store?.logoUrl ? (
               <Image src={store.logoUrl} alt={store.name} width={120} height={40} className="max-h-10 object-contain" />
             ) : (
-              <span className="font-serif text-2xl font-bold text-[#1A1A19] tracking-tight">{store?.name}</span>
+              <span className="font-heading text-2xl font-bold text-[#1A1A19] tracking-tight">{store?.name}</span>
             )}
           </Link>
         </div>

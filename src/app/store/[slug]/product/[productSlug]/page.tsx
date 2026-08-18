@@ -66,7 +66,7 @@ export default function ProductDetailPage({
       {/* Product Info */}
       <div className="w-full md:w-1/2 px-4 md:px-0 py-6 flex flex-col gap-6">
         <div>
-          <h1 className="font-serif text-3xl md:text-4xl font-semibold text-[#1A1A19] mb-2">
+          <h1 className="font-heading text-3xl md:text-4xl font-semibold text-[#1A1A19] mb-2">
             {product.title}
           </h1>
           <div className="flex items-center gap-3">
@@ -135,7 +135,7 @@ export default function ProductDetailPage({
         {/* Description */}
         {product.description && (
           <div className="mt-4 prose prose-sm prose-stone">
-            <h3 className="font-serif text-lg text-[#1A1A19] font-semibold mb-2">Description</h3>
+            <h3 className="font-heading text-lg text-[#1A1A19] font-semibold mb-2">Description</h3>
             <div 
               className="text-[#6B6560] leading-relaxed"
               dangerouslySetInnerHTML={{ __html: product.description }}

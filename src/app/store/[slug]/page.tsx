@@ -31,7 +31,7 @@ export default async function StoreHomePage({
           />
         ) : (
           <div className="bg-[#F5F0EB] w-full h-full flex items-center justify-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-semibold text-[#1A1A19]">
+            <h1 className="font-heading text-4xl md:text-5xl font-semibold text-[#1A1A19]">
               {store.name}
             </h1>
           </div>
@@ -70,7 +70,7 @@ export default async function StoreHomePage({
 
         {/* Sort Options */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className="font-serif text-2xl font-semibold text-[#1A1A19]">All Products</h2>
+          <h2 className="font-heading text-2xl font-semibold text-[#1A1A19]">All Products</h2>
           <select className="text-sm border-none bg-transparent text-[#6B6560] font-medium focus:ring-0 cursor-pointer">
             <option>Featured</option>
             <option>Price: Low to High</option>

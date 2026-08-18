@@ -22,7 +22,7 @@ export function CartDrawer({ storeSlug, store, children }: { storeSlug: string, 
       </SheetTrigger>
       <SheetContent className="w-full sm:max-w-md bg-[#FAFAF7] border-l-[#E8E2DC] p-0 flex flex-col">
         <SheetHeader className="p-6 border-b border-[#E8E2DC]">
-          <SheetTitle className="font-serif text-2xl font-semibold text-[#1A1A19]">Your Bag</SheetTitle>
+          <SheetTitle className="font-heading text-2xl font-semibold text-[#1A1A19]">Your Bag</SheetTitle>
         </SheetHeader>
         
         <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">

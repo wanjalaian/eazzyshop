@@ -120,7 +120,7 @@ export default function OrdersPage() {
               </div>
 
               <div className="flex flex-col md:items-end gap-2">
-                <span className="font-serif text-lg font-bold text-[#1A1A19]">
+                <span className="font-heading text-lg font-bold text-[#1A1A19]">
                   {store && formatPrice(order.totalAmount, (store.currency as any) || 'KES')}
                 </span>
                 <div className="flex items-center gap-2">
