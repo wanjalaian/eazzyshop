@@ -1,45 +1,56 @@
 'use client';
 
-import { useConvexAuth } from 'convex/react';
-import { useQuery } from 'convex/react';
+import { useConvexAuth, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { DashboardSidebar } from '@/components/dashboard/dashboard-sidebar';
 import { Loader2 } from 'lucide-react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const store = useQuery(api.stores.getByOwner);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      router.push('/login');
+    }
+  }, [isLoading, isAuthenticated, router]);
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated && store === null) {
+      router.push('/setup');
+    }
+  }, [isLoading, isAuthenticated, store, router]);
 
   if (isLoading || store === undefined) {
-    return <div className="flex items-center justify-center min-h-screen"><Loader2 className="animate-spin text-[#1A1A19] w-8 h-8" /></div>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-[#FAFAF7] gap-3">
+        <Loader2 className="animate-spin text-[#C4653A] w-8 h-8" />
+        <p className="text-sm font-medium text-[#6B6560]">Loading your dashboard...</p>
+      </div>
+    );
   }
 
-  if (!isAuthenticated) {
-    redirect('/');
-  }
-
-  if (store === null) {
-    redirect('/setup');
+  if (!isAuthenticated || store === null) {
+    return null;
   }
 
   return (
-    <div className="flex min-h-screen bg-white">
+    <div className="flex min-h-screen bg-white font-sans">
       <div className="hidden md:block">
         <DashboardSidebar store={store} />
       </div>
-      <main className="flex-1 p-6 font-dm-sans">
+      <main className="flex-1 p-6">
         <header className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-semibold text-[#1A1A19]">{store.name}</h1>
-          <span className={`px-3 py-1 text-sm font-medium rounded-full ${store.isLive ? 'text-[#3D7A4A] bg-[#F5F0EB]' : 'text-[#C9973E] bg-[#F5F0EB]'}`}>
+          <h1 className="text-2xl font-bold font-heading text-[#1A1A19]">{store.name}</h1>
+          <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${store.isLive ? 'text-[#3D7A4A] bg-[#3D7A4A]/10' : 'text-[#C9973E] bg-[#C9973E]/10'}`}>
             {store.isLive ? 'Live' : 'Draft'}
           </span>
         </header>
         {children}
       </main>
-      <div className="md:hidden fixed bottom-0 w-full h-14 bg-white border-t border-[#E8E2DC] z-50">
-        {/* Mobile bottom nav here */}
-      </div>
     </div>
   );
 }
