@@ -1,87 +1,82 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Store, MessageSquare, Smartphone, Zap, ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { Store, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#FAFAF7] text-[#1A1A19] font-sans antialiased">
       {/* Header */}
-      <header className="border-b border-[#E8E2DC] bg-[#FAFAF7]/90 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <header className="border-b border-[#E8E2DC] bg-[#FAFAF7] sticky top-0 z-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#1A1A19] flex items-center justify-center text-white font-bold font-heading">
+            <div className="w-8 h-8 rounded-lg bg-[#1A1A19] flex items-center justify-center text-white font-bold text-sm">
               E
             </div>
-            <span className="font-heading text-xl font-extrabold tracking-tight">EazzyShop</span>
+            <span className="font-heading text-lg font-bold tracking-tight">EazzyShop</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <Link
               href="/login"
-              className="text-sm font-semibold text-[#1A1A19] hover:text-[#C4653A] px-3 py-2 transition-colors"
+              className="text-xs font-semibold text-[#1A1A19] hover:text-[#C4653A] transition-colors"
             >
-              Sign In
+              Sign in
             </Link>
             <Link
               href="/register"
-              className="text-sm font-bold bg-[#C4653A] hover:bg-[#A8522E] text-white px-4 py-2.5 rounded-lg transition-colors shadow-sm"
+              className="text-xs font-semibold bg-[#1A1A19] hover:bg-[#1A1A19]/90 text-white px-3.5 py-2 rounded-md transition-colors"
             >
-              Start Free
+              Start free store
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="pt-12 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 text-left space-y-6">
-            <div className="inline-flex items-center gap-2 bg-[#F5F0EB] border border-[#E8E2DC] px-3.5 py-1.5 rounded-full text-xs font-bold text-[#C4653A]">
-              <Zap size={14} className="fill-[#C4653A]" /> ZERO COMMISSIONS • NO PAYMENT GATEWAYS
-            </div>
-
-            <h1 className="font-heading text-4xl sm:text-6xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] text-[#1A1A19]">
-              Sell on WhatsApp. <br />
-              <span className="text-[#C4653A]">No technical headache.</span>
+      <section className="pt-12 pb-16 px-4 sm:px-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+          <div className="md:col-span-7 space-y-5">
+            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight text-[#1A1A19]">
+              Turn your social media catalog into direct WhatsApp sales.
             </h1>
 
-            <p className="text-base sm:text-lg text-[#6B6560] max-w-xl leading-relaxed">
-              Create a high-converting mobile catalog in 2 minutes. Share your store link on Instagram, TikTok & WhatsApp. Receive clean, structured cart orders straight to your phone.
+            <p className="text-sm sm:text-base text-[#6B6560] leading-relaxed max-w-lg">
+              EazzyShop gives social sellers a clean mobile catalog. Buyers build a cart and send structured orders directly to your WhatsApp Business number with no payment gateway fees.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <div className="flex items-center gap-3 pt-2">
               <Link
                 href="/register"
-                className="px-8 py-4 bg-[#1A1A19] hover:bg-[#1A1A19]/90 text-white rounded-xl font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg"
+                className="px-5 py-2.5 bg-[#C4653A] hover:bg-[#A8522E] text-white rounded-md font-semibold text-xs uppercase tracking-wider flex items-center gap-2 transition-colors"
               >
-                Create Your Store Now
-                <ArrowRight size={18} />
+                Create your store
+                <ArrowRight size={14} />
               </Link>
               <Link
                 href="/login"
-                className="px-8 py-4 bg-white border border-[#E8E2DC] hover:bg-[#F5F0EB] text-[#1A1A19] rounded-xl font-bold text-sm transition-colors flex items-center justify-center"
+                className="px-5 py-2.5 bg-white border border-[#E8E2DC] hover:bg-[#F5F0EB] text-[#1A1A19] rounded-md font-semibold text-xs transition-colors"
               >
-                Sign In to Dashboard
+                Sign in
               </Link>
             </div>
 
-            <div className="pt-4 flex items-center gap-6 text-xs font-semibold text-[#6B6560]">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 size={16} className="text-[#3D7A4A]" /> Free tier forever
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 size={16} className="text-[#3D7A4A]" /> M-Pesa & Cash ready
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 size={16} className="text-[#3D7A4A]" /> 12 Currencies
-              </div>
+            <div className="pt-3 flex flex-wrap items-center gap-5 text-xs text-[#6B6560]">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 size={14} className="text-[#3D7A4A]" /> No monthly fees
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 size={14} className="text-[#3D7A4A]" /> Works with M-Pesa & Cash
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 size={14} className="text-[#3D7A4A]" /> Local & global currencies
+              </span>
             </div>
           </div>
 
           {/* Storefront Image Mockup */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-[340px] aspect-[9/16] rounded-[36px] p-3 bg-[#1A1A19] shadow-2xl border-4 border-[#1A1A19]">
-              <div className="relative w-full h-full rounded-[28px] overflow-hidden bg-white">
+          <div className="md:col-span-5 flex justify-center">
+            <div className="relative w-full max-w-[280px] aspect-[9/16] rounded-[24px] p-2 bg-[#1A1A19] shadow-lg">
+              <div className="relative w-full h-full rounded-[18px] overflow-hidden bg-white">
                 <Image
                   src="/images/storefront-preview.jpg"
                   alt="Mobile Storefront Preview"
@@ -95,21 +90,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Live Order Format Mockup */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-[#1A1A19]">
-            Structured WhatsApp order delivery
+      {/* Structured Order Delivery Demo */}
+      <section className="py-12 px-4 sm:px-6 max-w-4xl mx-auto border-t border-[#E8E2DC]">
+        <div className="mb-6">
+          <h2 className="font-heading text-xl font-bold text-[#1A1A19]">
+            How cart orders arrive in your WhatsApp
           </h2>
-          <p className="text-[#6B6560] text-sm mt-1">What you receive in your chat when a buyer checks out</p>
+          <p className="text-xs text-[#6B6560] mt-1">Structured order summary generated automatically when a customer checks out</p>
         </div>
 
-        <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-[#E8E2DC] p-6 shadow-lg text-left font-sans">
-          <div className="flex items-center gap-3 border-b border-[#E8E2DC] pb-4 mb-4">
-            <div className="w-3 h-3 rounded-full bg-emerald-500" />
-            <span className="text-xs font-bold text-[#1A1A19] uppercase tracking-wider">Incoming WhatsApp Order</span>
-          </div>
-          <div className="bg-[#F5F0EB] p-4 rounded-xl font-mono text-xs sm:text-sm leading-relaxed text-[#1A1A19] whitespace-pre-wrap">
+        <div className="bg-white rounded-xl border border-[#E8E2DC] p-5 shadow-sm font-sans">
+          <div className="bg-[#F5F0EB] p-4 rounded-lg font-mono text-xs sm:text-sm leading-relaxed text-[#1A1A19] whitespace-pre-wrap">
 {`🛍️ *NEW ORDER — URBAN THREADS*
 Order Ref: #1024
 ──────────────────
@@ -130,18 +121,18 @@ Order Ref: #1024
         </div>
       </section>
 
-      {/* Merchant Dashboard Preview Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-[#E8E2DC]">
-        <div className="text-center mb-12">
-          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-[#1A1A19] mb-4">
-            Powerful Back-Office on your phone or laptop
+      {/* Dashboard Preview Section */}
+      <section className="py-12 px-4 sm:px-6 max-w-5xl mx-auto border-t border-[#E8E2DC]">
+        <div className="mb-8">
+          <h2 className="font-heading text-xl font-bold text-[#1A1A19] mb-2">
+            Merchant dashboard & back-office
           </h2>
-          <p className="text-[#6B6560] max-w-xl mx-auto text-sm sm:text-base">
-            Track revenue, log manual sales from chat, manage size/color variants, and build customer loyalty.
+          <p className="text-xs sm:text-sm text-[#6B6560]">
+            Manage products, variants, customer records, and log manual sales from your phone or desktop.
           </p>
         </div>
 
-        <div className="relative w-full rounded-2xl overflow-hidden border border-[#E8E2DC] shadow-xl mb-16 bg-white">
+        <div className="relative w-full rounded-xl overflow-hidden border border-[#E8E2DC] shadow-md mb-10 bg-white">
           <Image
             src="/images/dashboard-preview.jpg"
             alt="Merchant Dashboard Preview"
@@ -151,67 +142,37 @@ Order Ref: #1024
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-8 rounded-2xl border border-[#E8E2DC] shadow-sm flex flex-col gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#F3E8E2] text-[#C4653A] flex items-center justify-center font-bold">
-              <Smartphone size={22} />
-            </div>
-            <h3 className="font-heading text-lg font-bold text-[#1A1A19]">Variants Matrix Ready</h3>
-            <p className="text-[#6B6560] text-sm leading-relaxed">
-              Clothing sizes (S, M, L, XL), shoe colors, phone storage capacities (64GB, 128GB). Add option groups in seconds.
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="bg-white p-5 rounded-xl border border-[#E8E2DC] space-y-2">
+            <h3 className="font-heading text-sm font-bold text-[#1A1A19]">Product Variants</h3>
+            <p className="text-[#6B6560] text-xs leading-relaxed">
+              Configure sizing, colors, and stock options for clothing, shoes, or electronics.
             </p>
           </div>
 
-          <div className="bg-white p-8 rounded-2xl border border-[#E8E2DC] shadow-sm flex flex-col gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#F3E8E2] text-[#C4653A] flex items-center justify-center font-bold">
-              <MessageSquare size={22} />
-            </div>
-            <h3 className="font-heading text-lg font-bold text-[#1A1A19]">Direct M-Pesa & Cash Flow</h3>
-            <p className="text-[#6B6560] text-sm leading-relaxed">
-              Collect payments via M-Pesa Till/Paybill, Cash on Delivery, or Bank Transfer. You get 100% of your money immediately.
+          <div className="bg-white p-5 rounded-xl border border-[#E8E2DC] space-y-2">
+            <h3 className="font-heading text-sm font-bold text-[#1A1A19]">Direct Payments</h3>
+            <p className="text-[#6B6560] text-xs leading-relaxed">
+              Accept M-Pesa, Cash on Delivery, or Bank Transfer directly from your buyers.
             </p>
           </div>
 
-          <div className="bg-white p-8 rounded-2xl border border-[#E8E2DC] shadow-sm flex flex-col gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#F3E8E2] text-[#C4653A] flex items-center justify-center font-bold">
-              <Zap size={22} />
-            </div>
-            <h3 className="font-heading text-lg font-bold text-[#1A1A19]">1-Tap Re-engagement</h3>
-            <p className="text-[#6B6560] text-sm leading-relaxed">
-              Auto-log customer phone numbers and purchase history. Message top buyers directly on WhatsApp with new drops.
+          <div className="bg-white p-5 rounded-xl border border-[#E8E2DC] space-y-2">
+            <h3 className="font-heading text-sm font-bold text-[#1A1A19]">Customer Directory</h3>
+            <p className="text-[#6B6560] text-xs leading-relaxed">
+              Auto-save customer phone numbers and purchase history for quick WhatsApp re-engagement.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Footer */}
-      <section className="py-16 px-4 bg-[#1A1A19] text-white text-center">
-        <div className="max-w-4xl mx-auto space-y-6">
-          <h2 className="font-heading text-3xl sm:text-5xl font-bold tracking-tight">
-            Ready to scale your WhatsApp sales?
-          </h2>
-          <p className="text-[#A89F97] max-w-lg mx-auto text-sm sm:text-base">
-            Set up your storefront today. Free forever on Starter tier.
-          </p>
-          <div className="pt-4">
-            <Link
-              href="/register"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#C4653A] hover:bg-[#A8522E] text-white font-bold text-sm rounded-xl uppercase tracking-wider transition-all shadow-md"
-            >
-              Build My Store Now
-              <ArrowRight size={18} />
-            </Link>
           </div>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="border-t border-[#E8E2DC] py-8 px-4 text-center text-xs text-[#6B6560] bg-[#FAFAF7]">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2 font-heading font-bold text-[#1A1A19]">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="font-heading font-bold text-[#1A1A19]">
             EazzyShop Platform
           </div>
-          <p>© {new Date().getFullYear()} EazzyShop. Built for African & Global Merchants.</p>
+          <p>© {new Date().getFullYear()} EazzyShop.</p>
         </div>
       </footer>
     </div>
