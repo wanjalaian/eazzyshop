@@ -3,14 +3,41 @@
 import { useConvexAuth, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { DashboardSidebar } from '@/components/dashboard/dashboard-sidebar';
 import { Loader2 } from 'lucide-react';
 
+function useSafeAuth() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  let authState = { isAuthenticated: false, isLoading: true };
+  try {
+    const auth = useConvexAuth();
+    if (auth) {
+      authState = { isAuthenticated: auth.isAuthenticated, isLoading: auth.isLoading };
+    }
+  } catch (e) {
+    authState = { isAuthenticated: false, isLoading: false };
+  }
+
+  if (!mounted) {
+    return { isAuthenticated: false, isLoading: true };
+  }
+
+  return authState;
+}
+
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useConvexAuth();
-  const store = useQuery(api.stores.getByOwner);
+  const { isAuthenticated, isLoading } = useSafeAuth();
   const router = useRouter();
+
+  const store = useQuery(
+    api.stores.getByOwner,
+    isAuthenticated ? {} : ('skip' as any)
+  );
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -24,7 +51,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     }
   }, [isLoading, isAuthenticated, store, router]);
 
-  if (isLoading || store === undefined) {
+  if (isLoading || (isAuthenticated && store === undefined)) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-[#FAFAF7] gap-3">
         <Loader2 className="animate-spin text-[#C4653A] w-8 h-8" />
@@ -33,7 +60,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     );
   }
 
-  if (!isAuthenticated || store === null) {
+  if (!isAuthenticated || !store) {
     return null;
   }
 
