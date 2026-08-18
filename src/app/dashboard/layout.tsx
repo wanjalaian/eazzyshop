@@ -3,41 +3,18 @@
 import { useConvexAuth, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { DashboardSidebar } from '@/components/dashboard/dashboard-sidebar';
 import { Loader2 } from 'lucide-react';
 
-function useSafeAuth() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  let authState = { isAuthenticated: false, isLoading: true };
-  try {
-    const auth = useConvexAuth();
-    if (auth) {
-      authState = { isAuthenticated: auth.isAuthenticated, isLoading: auth.isLoading };
-    }
-  } catch (e) {
-    authState = { isAuthenticated: false, isLoading: false };
-  }
-
-  if (!mounted) {
-    return { isAuthenticated: false, isLoading: true };
-  }
-
-  return authState;
-}
-
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isLoading } = useSafeAuth();
-  const router = useRouter();
+  const { isAuthenticated, isLoading } = useConvexAuth();
 
   const store = useQuery(
     api.stores.getByOwner,
     isAuthenticated ? {} : ('skip' as any)
   );
+  const router = useRouter();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
