@@ -2,6 +2,23 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { verifyStoreOwnership, generateSlug } from "./utils";
 
+async function resolveProductImages(ctx: any, product: any) {
+  if (!product) return null;
+  const imageUrls = await Promise.all(
+    (product.imageStorageIds || []).map(async (id: any) => {
+      try {
+        return await ctx.storage.getUrl(id);
+      } catch (e) {
+        return null;
+      }
+    })
+  );
+  return {
+    ...product,
+    imageUrls: imageUrls.filter(Boolean),
+  };
+}
+
 export const listByStore = query({
   args: {
     storeId: v.id("stores"),
@@ -11,19 +28,22 @@ export const listByStore = query({
   handler: async (ctx, args) => {
     const limit = args.limit ?? 50;
 
+    let products;
     if (args.categoryId) {
-      return await ctx.db
+      products = await ctx.db
         .query("products")
         .withIndex("by_store_and_category", (q) =>
           q.eq("storeId", args.storeId).eq("categoryId", args.categoryId!),
         )
         .take(limit);
+    } else {
+      products = await ctx.db
+        .query("products")
+        .withIndex("by_store", (q) => q.eq("storeId", args.storeId))
+        .take(limit);
     }
 
-    return await ctx.db
-      .query("products")
-      .withIndex("by_store", (q) => q.eq("storeId", args.storeId))
-      .take(limit);
+    return await Promise.all(products.map((p) => resolveProductImages(ctx, p)));
   },
 });
 
@@ -33,12 +53,26 @@ export const getBySlug = query({
     slug: v.string(),
   },
   handler: async (ctx, args) => {
-    return await ctx.db
+    const product = await ctx.db
       .query("products")
       .withIndex("by_store_and_slug", (q) =>
         q.eq("storeId", args.storeId).eq("slug", args.slug),
       )
       .first();
+
+    return resolveProductImages(ctx, product);
+  },
+});
+
+export const getById = query({
+  args: {
+    storeId: v.id("stores"),
+    productId: v.id("products"),
+  },
+  handler: async (ctx, args) => {
+    const product = await ctx.db.get(args.productId);
+    if (!product || product.storeId !== args.storeId) return null;
+    return resolveProductImages(ctx, product);
   },
 });
 
@@ -54,7 +88,8 @@ export const search = query({
       .collect();
 
     const lowerQuery = args.searchQuery.toLowerCase();
-    return products.filter((p) => p.title.toLowerCase().includes(lowerQuery));
+    const filtered = products.filter((p) => p.title.toLowerCase().includes(lowerQuery));
+    return await Promise.all(filtered.map((p) => resolveProductImages(ctx, p)));
   },
 });
 
@@ -139,6 +174,8 @@ export const update = mutation({
         }),
       ),
     ),
+    isAvailable: v.optional(v.boolean()),
+    isFeatured: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
     const { storeId, productId, ...updates } = args;
@@ -221,7 +258,9 @@ export const remove = mutation({
     if (!product) return;
 
     for (const storageId of product.imageStorageIds) {
-      await ctx.storage.delete(storageId);
+      try {
+        await ctx.storage.delete(storageId);
+      } catch (e) {}
     }
 
     await ctx.db.delete(args.productId);
