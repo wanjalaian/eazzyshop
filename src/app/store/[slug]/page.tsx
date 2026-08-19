@@ -3,6 +3,7 @@ import { api } from "@/convex/_generated/api";
 import { ProductCard } from "@/components/storefront/product-card";
 import { Search } from "lucide-react";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export default async function StoreHomePage({
   params,
@@ -12,7 +13,9 @@ export default async function StoreHomePage({
   const { slug } = await params;
   
   const store = await fetchQuery(api.stores.getBySlug, { slug });
-  if (!store) return null;
+  if (!store) {
+    notFound();
+  }
 
   const products = await fetchQuery(api.products.listByStore, { storeId: store._id });
   const categories = await fetchQuery(api.categories.listByStore, { storeId: store._id });
